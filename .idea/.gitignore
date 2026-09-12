@@ -1,0 +1,21 @@
+# IDE
+.idea/
+.vscode/
+
+# Secrets / credentials
+Credentials/
+.env
+.env.*
+*.key
+*.pem
+
+# Backend build
+backend/target/
+
+# Frontend build/dependencies
+frontend/node_modules/
+frontend/dist/
+
+# OS
+.DS_Store
+Thumbs.db
