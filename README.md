@@ -1,8 +1,44 @@
 # 🏨 StayEase — Hotel Reservation Platform
 
-StayEase is a full-stack hotel reservation platform inspired by Booking.com. It allows customers to search for hotels, check room availability, make reservations, complete payments, manage bookings, and submit reviews.
+StayEase is a full-stack hotel reservation platform inspired by modern hotel-booking applications. It allows customers to search for hotels, check room availability, make reservations, complete simulated payments, manage bookings, and submit reviews.
 
-The platform also provides dedicated functionality for **Hotel Managers** to manage hotels and rooms, and for **Administrators** to monitor the overall platform.
+The platform also provides dedicated functionality for **Hotel Managers** to manage hotels, rooms, and reservations, and for **Administrators** to monitor and manage the overall platform.
+
+---
+
+## 🌐 Live Application
+
+### Frontend
+
+**StayEase Web Application**
+
+https://stayease-frontend-alpha.vercel.app
+
+### Backend
+
+**StayEase REST API**
+
+https://stayease-backend-ydm5.onrender.com
+
+### API Documentation
+
+https://stayease-backend-ydm5.onrender.com/swagger-ui/index.html
+
+> The backend is hosted on Render. If the service is inactive, the first request may take a short time while the service starts.
+
+---
+
+## 🔑 Demo Accounts
+
+The deployed application can be tested using the following demo accounts.
+
+| Role | Email | Password |
+|---|---|---|
+| Customer | customer.demo@stayease.com | Demo@123 |
+| Hotel Manager | manager.demo@stayease.com | Demo@123 |
+| Administrator | admin.demo@stayease.com | Demo@123 |
+
+> **Note:** These accounts are intended only for demonstration and evaluation. They do not contain personal information.
 
 ---
 
@@ -80,7 +116,7 @@ The booking system includes:
 
 ### 💳 Payment Management
 
-StayEase includes a payment workflow with:
+StayEase includes a simulated payment workflow with:
 
 - Booking payment records
 - Transaction IDs
@@ -89,7 +125,7 @@ StayEase includes a payment workflow with:
 - Duplicate payment prevention
 - Automatic booking confirmation after successful payment
 
-> Payment processing is currently implemented as a simulated payment workflow for demonstration purposes.
+> Payment processing is simulated for demonstration purposes. No real financial transaction is performed.
 
 ### ⭐ Reviews & Ratings
 
@@ -110,22 +146,21 @@ StayEase provides in-app notifications for important events including:
 - Successful payments
 - Account and platform activities
 
-Notifications can be marked as read.
+Notifications can also be marked as read.
 
 ### 📧 Email & SMS
 
 The backend supports:
 
 - Email notifications using Spring Mail
-- SMS integration using Twilio
+- SMS notifications using Twilio
 
 Notifications can be triggered for booking and payment activities.
 
-### 📊 Dashboards & Reports
-
-Dedicated dashboards are available for:
+### 📊 Role-Based Dashboards
 
 **Customers**
+
 - Booking overview
 - Booking history
 - Payments
@@ -133,6 +168,7 @@ Dedicated dashboards are available for:
 - Profile management
 
 **Hotel Managers**
+
 - Hotel management
 - Room management
 - Property reservations
@@ -140,6 +176,7 @@ Dedicated dashboards are available for:
 - Revenue information
 
 **Administrators**
+
 - Platform overview
 - User management
 - Hotel monitoring
@@ -191,9 +228,9 @@ Dedicated dashboards are available for:
 
 ### Deployment
 
-- Backend — Render
-- Frontend — Vercel / Netlify
-- Database — MongoDB Atlas
+- **Frontend:** Vercel
+- **Backend:** Render
+- **Database:** MongoDB Atlas
 
 ---
 
@@ -234,7 +271,7 @@ StayEase-Hotel-Reservation-Platform/
 
 StayEase uses **Spring Security and JWT** for authentication and authorization.
 
-After successful login, the backend generates a JWT token. Protected API requests include this token in the authorization header.
+After successful login, the backend generates a JWT token. Protected API requests include this token in the authorization header:
 
 ```text
 Authorization: Bearer <JWT_TOKEN>
@@ -250,11 +287,13 @@ ADMIN
 
 Passwords are securely hashed using BCrypt before being stored in MongoDB.
 
+Production credentials and secrets are supplied through environment variables rather than being stored directly in the source code.
+
 ---
 
 ## 🗄️ Database
 
-StayEase uses **MongoDB Atlas** as the production database.
+StayEase uses **MongoDB Atlas** as its production database.
 
 Major collections include:
 
@@ -311,8 +350,6 @@ Email / SMS / In-App Notification
 
 StayEase contains unit tests for important business logic.
 
-Current test coverage includes:
-
 ### Authentication
 
 - User registration
@@ -362,9 +399,11 @@ On Windows:
 
 ## ⚙️ Environment Variables
 
-Sensitive credentials are **not stored in the repository**.
+Sensitive production credentials are **not stored in the repository**.
 
-The backend expects the following environment variables:
+### Backend
+
+The Spring Boot backend expects:
 
 ```text
 MONGODB_URI
@@ -398,7 +437,21 @@ twilio.auth-token=${TWILIO_AUTH_TOKEN}
 twilio.phone-number=${TWILIO_PHONE_NUMBER}
 ```
 
-> Never commit production passwords, JWT secrets, MongoDB credentials, Gmail App Passwords, or Twilio credentials to GitHub.
+### Frontend
+
+The Vite frontend uses:
+
+```text
+VITE_API_BASE_URL
+```
+
+For production:
+
+```text
+VITE_API_BASE_URL=https://stayease-backend-ydm5.onrender.com
+```
+
+> Never commit MongoDB passwords, JWT secrets, Gmail App Passwords, Twilio credentials, or other production secrets to GitHub.
 
 ---
 
@@ -406,19 +459,15 @@ twilio.phone-number=${TWILIO_PHONE_NUMBER}
 
 ### Prerequisites
 
-Make sure the following are installed:
-
 - Java 17+
 - Maven or Maven Wrapper
-- MongoDB / MongoDB Atlas access
+- MongoDB Atlas access
 
 Navigate to:
 
 ```bash
 cd backend
 ```
-
-Run:
 
 ### Windows
 
@@ -460,7 +509,13 @@ Start the development server:
 npm run dev
 ```
 
-The Vite frontend will start on the local development URL displayed in the terminal.
+The Vite development server will display the local frontend URL in the terminal.
+
+For local development, the frontend can use:
+
+```text
+VITE_API_BASE_URL=http://localhost:8080
+```
 
 ---
 
@@ -468,7 +523,11 @@ The Vite frontend will start on the local development URL displayed in the termi
 
 Swagger / OpenAPI is integrated into the backend.
 
-After starting the backend locally, Swagger UI is available at:
+### Production Swagger
+
+https://stayease-backend-ydm5.onrender.com/swagger-ui/index.html
+
+### Local Swagger
 
 ```text
 http://localhost:8080/swagger-ui/index.html
@@ -478,33 +537,36 @@ Swagger can be used to explore and test the StayEase REST APIs.
 
 ---
 
-## 🌐 Deployment
+## 🌐 Production Deployment
 
-### Backend
-
-The Spring Boot backend is deployed using **Render**.
-
-Production configuration is supplied through Render environment variables.
-
-**Backend URL:**
+StayEase is deployed as a full-stack cloud application.
 
 ```text
-Coming soon
+User
+  ↓
+Vercel
+React + TypeScript Frontend
+  ↓
+HTTPS / REST API
+  ↓
+Render
+Spring Boot Backend
+  ↓
+MongoDB Atlas
+Production Database
 ```
 
-### Frontend
+### Frontend — Vercel
 
-The React frontend is deployed using **Vercel / Netlify**.
+https://stayease-frontend-alpha.vercel.app
 
-**Frontend URL:**
+### Backend — Render
 
-```text
-Coming soon
-```
+https://stayease-backend-ydm5.onrender.com
 
-### Database
+### Database — MongoDB Atlas
 
-Production data is hosted on **MongoDB Atlas**.
+Production application data is stored in MongoDB Atlas.
 
 ---
 
@@ -530,16 +592,16 @@ The REST API is organized into modules for:
 
 Potential improvements include:
 
-- Integration with a real payment gateway such as Stripe
+- Real payment gateway integration such as Stripe
 - Hotel map integration
 - Advanced hotel recommendations
 - Wishlist / favourite hotels
 - Refresh-token authentication
 - Enhanced email templates
 - Additional reporting and analytics
-- CI/CD pipeline
+- CI/CD enhancements
 - Containerized deployment
-- Cloud image optimization
+- Cloud image storage and optimization
 
 ---
 
@@ -549,9 +611,9 @@ Potential improvements include:
 
 Full-Stack / Java Backend Developer
 
-Technologies: Java, Spring Boot, React, TypeScript, MongoDB, REST APIs, JWT, Docker, AWS and AI-assisted development.
+**Technologies:** Java, Spring Boot, React, TypeScript, MongoDB, REST APIs, JWT, Docker, AWS, and AI-assisted development.
 
-GitHub: Shalini-mano
+**GitHub:** Shalini-mano
 
 ---
 
@@ -568,7 +630,7 @@ StayEase was developed as a full-stack software development project to demonstra
 - Third-party service integration
 - Unit testing
 - Cloud database configuration
-- Full-stack deployment
+- Full-stack cloud deployment
 
 ---
 
