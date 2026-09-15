@@ -8,40 +8,29 @@ The platform also provides dedicated functionality for **Hotel Managers** to man
 
 ## 🌐 Live Application
 
-### Frontend
-
-**StayEase Web Application**
-
-https://stayease-frontend-alpha.vercel.app
-
-### Backend
-
-**StayEase REST API**
-
-https://stayease-backend-ydm5.onrender.com
-
-### API Documentation
-
-https://stayease-backend-ydm5.onrender.com/swagger-ui/index.html
-
-> The backend is hosted on Render. If the service is inactive, the first request may take a short time while the service starts.
-
----
-
 ## 🔑 Demo Accounts
 
-The deployed application can be tested using the following demo accounts.
+The deployed StayEase application can be tested using the following demo accounts.
 
 | Role | Email | Password |
 |---|---|---|
-| Customer | customer.demo@stayease.com | Demo@123 |
-| Hotel Manager | manager.demo@stayease.com | Demo@123 |
-| Administrator | admin.demo@stayease.com | Demo@123 |
+| 👤 Customer | shalini.test@gmail.com | Password123 |
+| 👤 Customer | Barathi.test@gmail.com | Newpassword123 |
+| 🏨 Hotel Manager | John.test@gmail.com | Password123 |
+| 🛡️ Administrator | Dheera.test@gmail.com | Password123 |
 
-> **Note:** These accounts are intended only for demonstration and evaluation. They do not contain personal information.
+### 🌐 Live Application
 
----
+**Frontend:**  
+https://stayease-frontend-alpha.vercel.app
 
+**Backend API:**  
+https://stayease-backend-ydm5.onrender.com
+
+**Swagger API Documentation:**  
+https://stayease-backend-ydm5.onrender.com/swagger-ui/index.html
+
+> These accounts are provided only for project demonstration and evaluation.
 ## 🚀 Features
 
 ### 👤 Authentication & Account Management
